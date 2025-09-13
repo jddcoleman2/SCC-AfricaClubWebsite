@@ -1,0 +1,188 @@
+import { useEffect } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+
+// Custom inline SVGs for Sri Chinmoy inspired motifs
+const TorchIcon = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="currentColor" {...props}>
+    <path d="M32 2c-6 6-6 14 0 20 6-6 6-14 0-20z" />
+    <path d="M28 24h8l-2 38h-4l-2-38z" />
+  </svg>
+);
+
+const LotusIcon = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="currentColor" {...props}>
+    <path d="M32 2C24 14 12 22 2 24c4 8 12 14 22 14-4 8-2 16 8 24 10-8 12-16 8-24 10 0 18-6 22-14-10-2-22-10-30-22z" />
+  </svg>
+);
+
+const DoveIcon = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="currentColor" {...props}>
+    <path d="M2 32c12 0 20-6 28-18 4 8 14 12 22 12-4 6-10 10-16 12 6 2 12 6 18 12-10 0-22-2-30-8-6 8-14 12-22 12z" />
+  </svg>
+);
+
+export default function AfricaClubHomepage() {
+  // Lightweight runtime "tests"
+  useEffect(() => {
+    try {
+      console.assert(typeof TorchIcon === "function", "[Test] Custom TorchIcon should be defined");
+      console.assert(!!document.querySelector('a[href="https://www.peacerun.org/us/"]'), "[Test] Peace Run link should be present");
+      console.assert(!!document.querySelector('a[href="https://www.onenessheart.org/"]'), "[Test] Oneness-Heart link should be present");
+      console.assert(!!document.querySelector('a[href="https://gh.srichinmoycentre.org/"]'), "[Test] Ghana Centre link should be present");
+    } catch (e) {
+      console.warn("Self-checks encountered an issue:", e);
+    }
+  }, []);
+
+  return (
+    <div className="min-h-screen flex flex-col bg-white text-gray-800">
+      {/* Header */}
+      <header className="w-full bg-gradient-to-r from-green-700 to-yellow-500 p-4 flex justify-between items-center shadow-md">
+        <h1 className="text-2xl font-bold text-white">🌍 Africa Club</h1>
+        <nav className="space-x-6 text-white">
+          <a href="#">Home</a>
+          <a href="#">About</a>
+          <a href="#">Activities</a>
+          <a href="#">Community</a>
+          <a href="#">Resources</a>
+          <a href="#">Get Involved</a>
+        </nav>
+        {/* Language Switcher */}
+        <div className="ml-6">
+          <select className="bg-white text-black rounded p-1">
+            <option>EN</option>
+            <option>FR</option>
+            <option>PT</option>
+          </select>
+        </div>
+      </header>
+
+      {/* Hero Banner */}
+      <motion.section
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="relative h-96 bg-cover bg-center flex items-center justify-center text-center"
+        style={{ backgroundImage: "url('https://www.peacerun.org/media/photos/2023/africa-banner.jpg')" }}
+      >
+        <div className="bg-black/50 p-6 rounded-2xl text-white max-w-2xl">
+          <h2 className="text-3xl font-bold mb-4">Peace • Service • Spiritual Growth</h2>
+          <p className="mb-4">
+            Inspired by the vision of Sri Chinmoy, the Africa Club unites communities through peace, humanitarian service, and the spiritual heart.
+          </p>
+          <div className="space-x-4">
+            <Button className="bg-yellow-400 text-black">Join Us</Button>
+            <Button className="bg-green-600 text-white">Learn More</Button>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* Featured Panels */}
+      <section className="grid grid-cols-1 md:grid-cols-3 gap-6 p-8">
+        <Card className="text-center shadow-lg">
+          <CardContent className="p-6">
+            <TorchIcon aria-label="Peace torch icon" className="mx-auto w-10 h-10 mb-4 text-yellow-500" />
+            <h3 className="font-bold text-lg mb-2">Peace Run</h3>
+            <p className="text-sm mb-2">The Sri Chinmoy Oneness-Home Peace Run across Africa.</p>
+            <a href="https://www.peacerun.org/us/" className="text-blue-600 underline">Learn more →</a>
+          </CardContent>
+        </Card>
+
+        <Card className="text-center shadow-lg">
+          <CardContent className="p-6">
+            <DoveIcon aria-label="Humanitarian aid dove icon" className="mx-auto w-10 h-10 mb-4 text-red-500" />
+            <h3 className="font-bold text-lg mb-2">Humanitarian Aid</h3>
+            <p className="text-sm mb-2">Projects supported by Oneness-Heart Tears and Smiles.</p>
+            <a href="https://www.onenessheart.org/" className="text-blue-600 underline">Learn more →</a>
+          </CardContent>
+        </Card>
+
+        <Card className="text-center shadow-lg">
+          <CardContent className="p-6">
+            <LotusIcon aria-label="African centres lotus icon" className="mx-auto w-10 h-10 mb-4 text-green-600" />
+            <h3 className="font-bold text-lg mb-2">African Centres</h3>
+            <p className="text-sm mb-2">Explore Centres in Ghana, Zimbabwe, and South Africa.</p>
+            <a href="https://gh.srichinmoycentre.org/" className="text-blue-600 underline">Visit Centres →</a>
+          </CardContent>
+        </Card>
+      </section>
+
+      {/* News & Events */}
+      <section className="p-8 bg-gray-100">
+        <h2 className="text-2xl font-bold mb-4">Latest News & Events</h2>
+        <ul className="space-y-2">
+          <li>✨ Peace Run upcoming route in West Africa</li>
+          <li>❤️ New humanitarian aid drive in Zimbabwe</li>
+          <li>🌸 Meditation workshop in Ghana Centre</li>
+        </ul>
+        <div className="mt-4">
+          <Card className="p-4">
+            <h3 className="font-bold mb-2">Events Calendar</h3>
+            <ul className="space-y-1 text-sm">
+              <li>📅 Sept 10 – Peace Run relay in Accra</li>
+              <li>📅 Sept 22 – Aid distribution in Harare</li>
+              <li>📅 Oct 5 – Meditation retreat in Cape Town</li>
+            </ul>
+          </Card>
+        </div>
+      </section>
+
+      {/* Members-only Dashboard */}
+      <section className="p-8">
+        <h2 className="text-2xl font-bold mb-4">Members Dashboard</h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          <Card className="shadow-md">
+            <CardContent className="p-4">
+              <h3 className="font-bold mb-2">Bulletin Board</h3>
+              <ul className="text-sm space-y-1">
+                <li>📝 Welcome new members!</li>
+                <li>🕊️ Peace Run volunteer signup open</li>
+              </ul>
+            </CardContent>
+          </Card>
+          <Card className="shadow-md">
+            <CardContent className="p-4">
+              <h3 className="font-bold mb-2">Discussions</h3>
+              <ul className="text-sm space-y-1">
+                <li>💬 Topic: Organizing meditation circles</li>
+                <li>💬 Topic: Expanding aid projects</li>
+              </ul>
+            </CardContent>
+          </Card>
+          <Card className="shadow-md">
+            <CardContent className="p-4">
+              <h3 className="font-bold mb-2">Suggestion Box</h3>
+              <textarea placeholder="Share your ideas..." className="w-full border rounded p-2 text-sm" rows={3}></textarea>
+              <Button className="mt-2 bg-green-600 text-white text-sm">Submit</Button>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Spotlight Section */}
+      <section className="p-8">
+        <Card className="shadow-xl">
+          <CardContent className="p-6 text-center">
+            <TorchIcon aria-label="Sri Chinmoy in Africa icon" className="mx-auto w-10 h-10 mb-4 text-indigo-500" />
+            <h2 className="text-2xl font-bold mb-2">Sri Chinmoy in Africa</h2>
+            <p className="mb-4">Discover stories, photos, and inspirations from Sri Chinmoy’s visits to Africa.</p>
+            <Button className="bg-indigo-600 text-white">Read More</Button>
+          </CardContent>
+        </Card>
+      </section>
+
+      {/* Footer with motifs */}
+      <footer className="bg-green-700 text-white p-6 text-center">
+        <div className="flex justify-center space-x-4 mb-2">
+          <TorchIcon className="w-6 h-6 text-yellow-300" />
+          <LotusIcon className="w-6 h-6 text-pink-300" />
+          <DoveIcon className="w-6 h-6 text-blue-300" />
+        </div>
+        <p>© {new Date().getFullYear()} Africa Club – Sri Chinmoy Centre</p>
+        <p className="mt-2 text-sm italic">“Peace begins with a smile of the heart.” – Sri Chinmoy</p>
+      </footer>
+    </div>
+  );
+}
